@@ -109,7 +109,7 @@ function findLastEditingMessageContainer(sessionid) {
 }
 
 var mySessionid;
-var socket = io.connect('http://localhost');
+var socket = io.connect();
 socket.on('connect', function() {
     mySessionid = socket.socket.sessionid;
     socket.json.emit('do commit', {
