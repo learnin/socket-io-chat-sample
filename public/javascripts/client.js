@@ -1,5 +1,4 @@
 // FIXME: XSS対策
-
 var messagesArea;
 var inputField;
 var isEditing = false;
@@ -101,8 +100,7 @@ function findLastEditingMessageContainer(sessionid) {
     if (messageContainers.length > 0) {
         for (var i = 0, n = messageContainers.length; i < n; i++) {
             var messageContainer = messageContainers[i];
-            if (getElementsByTagAndIdPrefix(messageContainer, 'div', 'sessionid_')[0].innerHTML == sessionid &&
-                getElementsByTagAndIdPrefix(messageContainer, 'div', 'isCommited_')[0].innerHTML != 'true') {
+            if (getElementsByTagAndIdPrefix(messageContainer, 'div', 'sessionid_')[0].innerHTML == sessionid && getElementsByTagAndIdPrefix(messageContainer, 'div', 'isCommited_')[0].innerHTML != 'true') {
                 result = messageContainer;
             }
         }
@@ -132,12 +130,10 @@ function renderSendMessage(msg) {
     if (lastEditingMessageContainer) {
         if (msg.message.length > 0) {
             getElementsByTagAndIdPrefix(lastEditingMessageContainer, 'span', 'message_')[0].innerHTML = msg.message;
-        }
-        else {
+        } else {
             messagesArea.removeChild(lastEditingMessageContainer);
         }
-    }
-    else {
+    } else {
         createMessageHtml(msg.sessionid, msg.message, false);
     }
 }
@@ -147,8 +143,7 @@ function renderCommitMessage(msg) {
     if (lastEditingMessageContainer) {
         getElementsByTagAndIdPrefix(lastEditingMessageContainer, 'span', 'message_')[0].innerHTML = msg.message;
         getElementsByTagAndIdPrefix(lastEditingMessageContainer, 'div', 'isCommited_')[0].innerHTML = 'true';
-    }
-    else {
+    } else {
         createMessageHtml(msg.sessionid, msg.message, true);
     }
 }
