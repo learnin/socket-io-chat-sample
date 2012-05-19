@@ -82,14 +82,9 @@ function getElementsByTagAndIdPrefix(doc, tag, prefix) {
     var result = [];
     var all = doc.getElementsByTagName(tag);
     if (all.length > 0) {
-        var j = 0;
-        for (var i = 0, n = all.length; i < n; i++) {
-            var element = all[i];
-            if (element.id && element.id.lastIndexOf(prefix, 0) === 0) {
-                result[j] = element;
-                j++;
-            }
-        }
+        result = Array.prototype.filter.call(all, function(element) {
+            return element.id && element.id.lastIndexOf(prefix, 0) === 0;
+        });
     }
     return result;
 }
